@@ -1,18 +1,33 @@
 # API-God — X export (Chrome extension)
 
-**A free, keyless X read API.** Pull the search and timelines X charges API money for,
-straight from your own logged-in session, and export to JSONL or markdown — one click,
-no key, no server.
+**A free, keyless X read API — pull search and timelines from your own logged-in session, export to JSONL or markdown.**
 
-X's paid API sells programmatic read access: search, user timelines, tweet lookups.
-The web app you're already logged into hits the same internal GraphQL endpoints every
-time you scroll. This extension reads those responses off the wire and hands you the data.
+## What it is
+
+A Chrome extension that turns the X tab you're already logged into a free, keyless X
+read API. When you search or scroll, X's own JavaScript calls its internal GraphQL
+backend; the extension reads those response bodies off the wire and exports them to
+JSONL/markdown. You never authenticate to anything — the auth is your existing session
+cookie.
+
+## The one idea that makes it different
+
+It **reads the answer to a request the page was going to make anyway.** It doesn't forge
+API calls, doesn't scrape rendered HTML. X makes the authenticated request; the extension
+tees the JSON response. That single choice is what separates it from every other category
+of tool:
+
+| Compared to | They do | This does instead |
+|---|---|---|
+| **X's paid API** ($100–$42k/mo, keyed) | Authorized machine access, rate-tiered, firehose/full-archive | Same search + timeline data, no key, no bill — bounded to your session's view, at browsing speed |
+| **DOM scrapers / Nitter** | Parse rendered HTML; race the paint; break on redesigns; third-party server or shared IP → bans | Reads structured JSON X itself fetched — gets `followers/blue/views/quotes` the DOM hides; survives UI redesigns; your own session, no shared IP |
+| **API-God / api-god-x** (the CLIs) | Drive a separate Playwright browser; must capture + store your login (`auth_token/ct0/twid`) to `~/.x-session/` | No Playwright, no stored session file — it lives inside the logged-in tab, so the auth is just there. Stripped the memecoin engine + ingestion daemon |
 
 ## How it works
 
 X is a single-page app — open a search or profile and it runs a GraphQL query
 (`SearchTimeline`, `UserTweets`, `ListLatestTweetsTimeline`, `HomeTimeline`, …) and
-renders the JSON. The extension **reads the answer to a request the page makes anyway**:
+renders the JSON. The extension reads the answer to a request the page makes anyway:
 
 ```
 X's JS fires SearchTimeline ─► patched fetch/XHR tees the response ─► parse ─► JSONL / markdown
