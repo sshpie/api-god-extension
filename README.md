@@ -46,4 +46,4 @@ only — no ingestion daemon, no signal engine, no network calls of its own.
 
 ## License
 
-MIT © 2026 Nicholas Kloster
+MIT © 2026
