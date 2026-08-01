@@ -1,10 +1,8 @@
 # API-God — X export (Chrome extension)
 
-**A free, keyless X read API — pull search and timelines from your own logged-in session, export to JSONL or markdown.**
-
-> **It reads the answer to a request the page was going to make anyway.**
-> It doesn't forge API calls, doesn't scrape rendered HTML. X makes the authenticated
-> request; the extension tees the JSON response.
+**It reads the answer to a request the page was going to make anyway.** It doesn't forge
+API calls, doesn't scrape rendered HTML. X makes the authenticated request; the extension
+tees the JSON response.
 
 ## What it is
 
