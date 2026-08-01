@@ -2,6 +2,10 @@
 
 **A free, keyless X read API — pull search and timelines from your own logged-in session, export to JSONL or markdown.**
 
+> **It reads the answer to a request the page was going to make anyway.**
+> It doesn't forge API calls, doesn't scrape rendered HTML. X makes the authenticated
+> request; the extension tees the JSON response.
+
 ## What it is
 
 A Chrome extension that turns the X tab you're already logged into a free, keyless X
@@ -10,12 +14,10 @@ backend; the extension reads those response bodies off the wire and exports them
 JSONL/markdown. You never authenticate to anything — the auth is your existing session
 cookie.
 
-## The one idea that makes it different
+## Why that matters
 
-It **reads the answer to a request the page was going to make anyway.** It doesn't forge
-API calls, doesn't scrape rendered HTML. X makes the authenticated request; the extension
-tees the JSON response. That single choice is what separates it from every other category
-of tool:
+Reading X's own response — instead of paying for a key, forging requests, or parsing
+HTML — is the one property that separates it from every other category of tool:
 
 | Compared to | They do | This does instead |
 |---|---|---|
