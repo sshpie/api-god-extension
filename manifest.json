@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "API-God — X export",
+  "version": "0.1.0",
+  "description": "Export the X (Twitter) search / timeline you're viewing to JSONL or markdown. Rides your own logged-in session — no API key, no server.",
+  "icons": { "128": "icons/icon128.png" },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "world": "ISOLATED"
+    }
+  ]
+}
