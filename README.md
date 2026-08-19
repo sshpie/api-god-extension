@@ -38,7 +38,7 @@ X's JS fires SearchTimeline ─► patched fetch/XHR tees the response ─► pa
   how you read them. It never forges a request; X makes the authenticated call, the
   extension reads the result.
 - `content.js` (isolated world) parses X's timeline JSON into flat records (parser ported
-  from and parity-tested byte-for-byte against [api-god-x](https://github.com/zellkernel/api-god-x)),
+  from and parity-tested byte-for-byte against [api-god-x](https://github.com/sshpie/api-god-x)),
   dedupes by tweet id, and exports.
 
 Per record: `id, handle, name, text, time, url, likes, replies, reposts, followers, blue,
